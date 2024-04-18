@@ -1,0 +1,21 @@
+@startuml
+!pragma layout smetana
+
+object Main
+object StartMenu
+object MainMenu
+object Movies
+object Shows
+object Ratings
+object ReleaseYear
+object UserData
+object Genres
+
+
+Main <-- StartMenu
+StartMenu <-- MainMenu
+
+
+
+
+@enduml
