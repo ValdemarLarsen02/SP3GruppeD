@@ -8,7 +8,8 @@ object Media
 object DataHandler
 object User
 object SearchHandler
-object player
+object Movies
+object Shows
 
 
 
@@ -18,7 +19,9 @@ User --> MainMenu
 MainMenu --> SearchHandler
 SearchHandler --> DataHandler
 DataHandler --> Media
-Media --> player
+Media --> Shows
+Media --> Movies
+
 
 
 

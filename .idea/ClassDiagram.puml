@@ -4,14 +4,11 @@
 Class Main{
 }
 
-Class StartMenu{
-
+Class Menu{
 }
 
 Class User{
-}
 
-Class MainMenu{
 }
 
 Class SearchHandler{
@@ -20,8 +17,25 @@ Class SearchHandler{
 Class DataHandler{
 }
 
-Class Media{
+Interface Media{
 }
 
+Class Util{
+}
+
+Class Movies{
+}
+
+Class Shows{
+}
+
+Main --* Menu
+Menu --* User
+User --* Menu
+Util --* Menu
+Menu --* SearchHandler
+SearchHandler --* Media
+Media --* Movies
+Media --* Shows
 
 @enduml
