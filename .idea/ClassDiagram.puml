@@ -1,0 +1,27 @@
+@startuml
+!pragma layout smetana
+
+Class Main{
+}
+
+Class StartMenu{
+
+}
+
+Class User{
+}
+
+Class MainMenu{
+}
+
+Class SearchHandler{
+}
+
+Class DataHandler{
+}
+
+Class Media{
+}
+
+
+@enduml

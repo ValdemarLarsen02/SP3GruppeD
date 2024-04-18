@@ -4,11 +4,11 @@
 object Main
 object StartMenu
 object MainMenu
-object Movies
-object Shows
+object Media
 object DataHandler
 object User
 object SearchHandler
+object player
 
 
 
@@ -17,8 +17,10 @@ StartMenu --> User
 User --> MainMenu
 MainMenu --> SearchHandler
 SearchHandler --> DataHandler
-DataHandler --> Movies
-DataHandler --> Shows
+DataHandler --> Media
+Media --> player
+
+
 
 
 
