@@ -6,14 +6,14 @@ object StartMenu
 object MainMenu
 object Movies
 object Shows
-object Ratings
-object ReleaseYear
-object UserData
-object Genres
+object DataHandler
+object User
+
 
 
 Main <-- StartMenu
 StartMenu <-- MainMenu
+
 
 
 
