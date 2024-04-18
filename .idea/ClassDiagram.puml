@@ -23,8 +23,7 @@ Class User{
 
 Class SearchHandler {
 - String input
-+ ArrayList<String> searchInput(String input)
-+ ArrayList<String> genreSearch(String input)
++ ArrayList<String> search(String input)
 }
 
 Class DataHandler{
