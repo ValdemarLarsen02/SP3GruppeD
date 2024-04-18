@@ -8,11 +8,18 @@ object Movies
 object Shows
 object DataHandler
 object User
+object SearchHandler
 
 
 
-Main <-- StartMenu
-StartMenu <-- MainMenu
+Main --> StartMenu
+StartMenu --> User
+User --> MainMenu
+MainMenu --> SearchHandler
+SearchHandler --> DataHandler
+DataHandler --> Movies
+DataHandler --> Shows
+
 
 
 
