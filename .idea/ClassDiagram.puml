@@ -4,38 +4,80 @@
 Class Main{
 }
 
-Class Menu{
+Interface Menu{
+public void ShowMenu()
+}
+
+Class StartMenu{
+}
+
+Class MainMenu{
 }
 
 Class User{
-
+- String Username
+- String Password
++ Login(String username, String password)
++ CreateAccount(String username, String password)
 }
 
-Class SearchHandler{
+Class SearchHandler {
+- String input
++ ArrayList<String> searchInput(String input)
++ ArrayList<String> genreSearch(String input)
 }
 
 Class DataHandler{
++ fileReader(path)
++ saveMediaData(String title)
++ saveUserData(String username, String password)
 }
 
-Interface Media{
+Abstract Media{
+- int releaseYear
+- String name
+- String category
+- double rating
++ void watchLater(User user)
++ void removeFromWatchLater(User user)
++ void alreadyWatched(User user)
++ void watch()
 }
 
 Class Util{
+- Scanner scanner
++ String PromptText(String msg)
++ int PromptChoice(String msg, ArrayList<String> list)
++ void displayMsg(String msg)
 }
 
 Class Movies{
+public void toString()
 }
 
 Class Shows{
+- ArrayList<Seasons>
+- ArrayList<Episodes>
++ public void toString()
 }
 
-Main --* Menu
-Menu --* User
-User --* Menu
-Util --* Menu
-Menu --* SearchHandler
-SearchHandler --* Media
-Media --* Movies
-Media --* Shows
+Main --> Menu
+Main --> Util
+Main --> User
+StartMenu --> Menu
+MainMenu --> Menu
+Util --> Media
+Media <|-- Shows
+Media <|-- Movies
+User --> DataHandler
+DataHandler --> Media
+SearchHandler --> MainMenu
+
+
+
+
+
+
+
 
 @enduml
