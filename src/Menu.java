@@ -1,6 +1,16 @@
 package src;
 
-public interface Menu {
+public class Menu {
 
-    public void ShowMenu();
+    public void ShowMenu(){
+
+    }
+
+    public void startMenu(){
+
+    }
+
+    public void mainMenu(){
+
+    }
 }

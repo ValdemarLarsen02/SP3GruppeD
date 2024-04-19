@@ -1,6 +1,6 @@
 package src;
 
-public class DataHandler {
+public class FileIO {
     void fileReader(String path){
 
     }
