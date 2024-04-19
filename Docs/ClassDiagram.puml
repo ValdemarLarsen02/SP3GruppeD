@@ -9,6 +9,7 @@ Class Menu{
  + public void MainMenu();
  + Public void StartMenu();
  + Public void CreateAccount();
+ + Public void Test();
 }
 
 
