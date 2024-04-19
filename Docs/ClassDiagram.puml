@@ -4,8 +4,9 @@
 Class Main{
 }
 
-Interface Menu{
-public void ShowMenu()
+Class Menu{
+ + public void MainMenu()
+ + Public void StartMenu()
 }
 
 
@@ -65,8 +66,6 @@ Main *-- Streaming
 Streaming--* User
 Streaming --* FileIO
 Streaming --* Menu
-Menu <|-- MainMenu
-Menu <|-- StartMenu
 Streaming --* Media
 Media <|-- Movies
 Media <|-- Shows
