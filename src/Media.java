@@ -31,6 +31,7 @@ public abstract class Media {
         alreadyWatchedList.add(user);
     }
 
+
     void watch() {
         String msg = "You are now watching " + this.title + "!";
     }
