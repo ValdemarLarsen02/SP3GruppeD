@@ -9,8 +9,8 @@ public abstract class Media {
     private String title;
     private String category;
     private double rating;
-    private List<User> watchLaterList;
-    private List<User> alreadyWatchedList;
+    private List<User> watchLaterList = new ArrayList<>();
+    private List<User> alreadyWatchedList = new ArrayList<>();
 
     public Media(String title, int releaseYear, String category, double rating) {
         this.releaseYear = releaseYear;
