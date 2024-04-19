@@ -1,11 +1,13 @@
 package src;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Shows extends Media{
 
-    ArrayList<>
+    List<Seasons> seasons = new ArrayList<>();
+
 
     public Shows(String title, int releaseYear, String category, double rating) {
         super(title, releaseYear, category, rating);
@@ -34,4 +36,5 @@ public class Shows extends Media{
     public String toString(){
        return "";
     }
+
 }

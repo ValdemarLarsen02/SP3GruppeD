@@ -5,12 +5,12 @@ import java.util.List;
 
 public abstract class Media {
 
-    protected int releaseYear;
-    protected String title;
-    protected String category;
-    protected double rating;
-    protected List<User> watchLaterList;
-    protected List<User> alreadyWatchedList;
+    private int releaseYear;
+    private String title;
+    private String category;
+    private double rating;
+    private List<User> watchLaterList;
+    private List<User> alreadyWatchedList;
 
     public Media(String title, int releaseYear, String category, double rating) {
         this.releaseYear = releaseYear;
@@ -21,7 +21,6 @@ public abstract class Media {
 
     void watchLater(User user) {
         watchLaterList.add(user);
-
     }
 
     void removeFromWatchLater(User user) {
@@ -34,6 +33,38 @@ public abstract class Media {
 
     void watch() {
         String msg = "You are now watching " + this.title + "!";
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
 
