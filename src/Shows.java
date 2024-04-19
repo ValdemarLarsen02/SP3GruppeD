@@ -34,7 +34,11 @@ public class Shows extends Media{
     }
 
     public String toString(){
-       return "";
+       return getTitle() + "\n" +
+               seasons + "\n" +
+               getCategory() + "\n" +
+               getRating() + "\n" +
+               getReleaseYear() + "\n";
     }
 
 }

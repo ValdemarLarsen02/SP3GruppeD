@@ -29,6 +29,9 @@ public class Movies extends Media{
     }
 
     public String toString(){
-        return "";
+        return getTitle() + "\n" +
+                getCategory() + "\n" +
+                getRating() + "\n" +
+                getReleaseYear() + "\n";
     }
 }
