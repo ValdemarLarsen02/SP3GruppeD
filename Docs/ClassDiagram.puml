@@ -60,17 +60,18 @@ Class Shows{
 + public String toString()
 }
 
-Main --> Menu
-Menu --> StartMenu
-Main --> Util
-Main --> User
-Menu --> MainMenu
-Util --> Media
+SearchHandler --* MainMenu
+Main *-- Menu
+Menu <|-- StartMenu
+Main *-- Util
+Main *-- User
+Menu <|-- MainMenu
+Media --* Util
 Media <|-- Shows
 Media <|-- Movies
-User --> DataHandler
-DataHandler --> Media
-SearchHandler --> MainMenu
+DataHandler --* User
+Media --* DataHandler
+
 
 
 @enduml
