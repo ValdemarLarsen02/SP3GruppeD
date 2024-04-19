@@ -51,13 +51,13 @@ Class Util{
 }
 
 Class Movies{
-public void toString()
+public String toString()
 }
 
 Class Shows{
 - ArrayList<Seasons>
 - ArrayList<Episodes>
-+ public void toString()
++ public String toString()
 }
 
 Main --> Menu
@@ -71,12 +71,6 @@ Media <|-- Movies
 User --> DataHandler
 DataHandler --> Media
 SearchHandler --> MainMenu
-
-
-
-
-
-
 
 
 @enduml
