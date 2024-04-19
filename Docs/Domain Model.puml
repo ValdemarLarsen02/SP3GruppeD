@@ -24,6 +24,7 @@ Media --> Shows
 Media --> Movies
 User --> DataHandler
 DataHandler --> MainMenu
+DataHandler <-- MainMenu
 
 
 

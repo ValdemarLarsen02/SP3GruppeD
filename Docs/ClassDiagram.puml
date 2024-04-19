@@ -26,7 +26,7 @@ Class SearchHandler {
 + ArrayList<String> search(String input)
 }
 
-Class DataHandler{
+Class FileIO{
 + fileReader(path)
 + saveMediaData(String title)
 + saveUserData(String username, String password)
@@ -60,17 +60,17 @@ Class Shows{
 + public String toString()
 }
 
-SearchHandler --* MainMenu
-Main *-- Menu
-Menu <|-- StartMenu
-Main *-- Util
-Main *-- User
+Main *-- Streaming
+Streaming--* User
+Streaming --* FileIO
+Streaming --* Menu
 Menu <|-- MainMenu
-Media --* Util
-Media <|-- Shows
+Menu <|-- StartMenu
+Streaming --* Media
 Media <|-- Movies
-DataHandler --* User
-Media --* DataHandler
+Media <|-- Shows
+Streaming --* SearchHandler
+Streaming --* Util
 
 
 
