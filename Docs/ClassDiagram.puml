@@ -5,8 +5,9 @@ Class Main{
 }
 
 Class Menu{
- + public void MainMenu()
- + Public void StartMenu()
+ + public void MainMenu();
+ + Public void StartMenu();
+ + Public void CreateAccount();
 }
 
 
@@ -20,12 +21,12 @@ Class User{
 - String Username
 - String Password
 + Login(String username, String password)
-+ CreateAccount(String username, String password)
 }
 
 Class SearchHandler {
 - String input
 + ArrayList<Media> search(String input)
+
 }
 
 Class FileIO{
