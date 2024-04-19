@@ -10,9 +10,10 @@ public void ShowMenu()
 
 
 
-Class Streaming{
+Class Streaming {
+    -Util
+    + ShowMenu(String menuType);
 }
-
 
 Class User{
 - String Username
