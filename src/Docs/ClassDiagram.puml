@@ -61,10 +61,10 @@ Class Shows{
 }
 
 Main --> Menu
+Menu --> StartMenu
 Main --> Util
 Main --> User
-StartMenu --> Menu
-MainMenu --> Menu
+Menu --> MainMenu
 Util --> Media
 Media <|-- Shows
 Media <|-- Movies
