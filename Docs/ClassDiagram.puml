@@ -24,7 +24,7 @@ Class User{
 
 Class SearchHandler {
 - String input
-+ ArrayList<String> search(String input)
++ ArrayList<Media> search(String input)
 }
 
 Class FileIO{
