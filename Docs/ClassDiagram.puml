@@ -8,10 +8,8 @@ Interface Menu{
 public void ShowMenu()
 }
 
-Class StartMenu{
-}
+Class Player {
 
-Class MainMenu{
 }
 
 Class User{
