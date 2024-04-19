@@ -13,6 +13,7 @@ object Shows
 
 
 
+
 Main --> StartMenu
 StartMenu --> User
 User --> MainMenu
@@ -21,6 +22,9 @@ SearchHandler --> DataHandler
 DataHandler --> Media
 Media --> Shows
 Media --> Movies
+User --> DataHandler
+DataHandler --> MainMenu
+
 
 
 
