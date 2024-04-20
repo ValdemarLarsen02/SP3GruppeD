@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Media {
+    Util util = new Util();
 
     private int releaseYear;
     private String title;
@@ -21,19 +22,32 @@ public abstract class Media {
 
     void watchLater(User user) {
         watchLaterList.add(user);
+        util.displayMsg("You have added " + this.title + " to your watch list.");
     }
 
     void removeFromWatchLater(User user) {
         watchLaterList.remove(user);
+        util.displayMsg("You have removed " + this.title + " from the watch list.");
     }
 
     void alreadyWatched(User user) {
         alreadyWatchedList.add(user);
+        util.displayMsg("You have already watched " + this.title);
     }
 
 
     void watch() {
-        String msg = "You are now watching " + this.title + "!";
+        util.displayMsg("You are now watching " + this.title + "!");
+    }
+
+    int i = 0;
+    void turnPage() {
+
+        for (int j = i; j < i + 10 && j < movie.size(); j++) {
+            System.out.println((movie.get(j)));
+
+        }
+        i += 10;
     }
 
     public int getReleaseYear() {

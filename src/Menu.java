@@ -71,7 +71,7 @@ public class Menu {
         return password;
     }
     public void settings() {
-        util.promptChoice()
+        //util.promptChoice()
     }
 
     public String mainMenu() {
@@ -90,10 +90,10 @@ public class Menu {
 
             switch (action1) {
                 case 1:
-                    media.watch(1);
+                    //media.watch(1);
                     break;
                 case 2:
-                    media.watch(2);
+                    //media.watch(2);
                     break;
                 case 3:
                     sh.genreSearch("");
