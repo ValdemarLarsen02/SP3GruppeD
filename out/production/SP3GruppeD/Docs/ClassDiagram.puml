@@ -1,0 +1,79 @@
+@startuml
+!pragma layout smetana
+
+Class Main{
++static void main(String[] args)
+}
+
+Class Menu{
+ + public void MainMenu();
+ + Public void StartMenu();
+ + Public void CreateAccount();
+}
+
+
+
+Class Streaming {
+    -Util
+    + ShowMenu(String menuType);
+}
+
+Class User{
+- String Username
+- String Password
++ Login(String username, String password)
+}
+
+Class SearchHandler {
+- String input
++ ArrayList<Media> search(String input)
+
+}
+
+Class FileIO{
++ fileReader(path)
++ saveMediaData(String title)
++ saveUserData(String username, String password)
+}
+
+Abstract Media{
+- int releaseYear
+- String name
+- String category
+- double rating
++ void watchLater(User user)
++ void removeFromWatchLater(User user)
++ void alreadyWatched(User user)
++ void watch()
+}
+
+Class Util{
+- Scanner scanner
++ String PromptText(String msg)
++ int PromptChoice(String msg, ArrayList<String> list)
++ void displayMsg(String msg)
+}
+
+Class Movies{
+public String toString()
+}
+
+Class Shows{
+- ArrayList<Seasons>
+- ArrayList<Episodes>
++ public String toString()
+}
+
+Main *-- Streaming
+Streaming--* User
+Streaming --* FileIO
+Streaming --* Menu
+Streaming --* Media
+Media <|-- Movies
+Media <|-- Shows
+Streaming --* SearchHandler
+Streaming --* Util
+
+
+
+@enduml
