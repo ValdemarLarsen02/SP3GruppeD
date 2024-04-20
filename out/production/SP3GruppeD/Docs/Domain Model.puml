@@ -1,0 +1,38 @@
+@startuml
+!pragma layout smetana
+
+object Main
+object StartMenu
+object MainMenu
+object Media
+object DataHandler
+object User
+object SearchHandler
+object Movies
+object Shows
+
+
+
+
+Main --> StartMenu
+StartMenu --> User
+User --> MainMenu
+MainMenu --> SearchHandler
+SearchHandler --> DataHandler
+DataHandler --> Media
+Media --> Shows
+Media --> Movies
+User --> DataHandler
+DataHandler --> MainMenu
+DataHandler <-- MainMenu
+
+
+
+
+
+
+
+
+
+
+@enduml
