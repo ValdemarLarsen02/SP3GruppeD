@@ -38,7 +38,6 @@ public class Menu {
                     this.username = this.usernameInfoScreen("Please enter username!");
                     this.password = this.passwordInfoScreen("Please enter password!");
                     user.login(this.username, this.password);
-                    mainMenu();
                     break;
                 case 2:
                     this.username = this.usernameInfoScreen("Please enter username!");
@@ -78,10 +77,10 @@ public class Menu {
         optionslist.add("2) Exit");
         int input =  util.promptChoice(optionslist, "Make a choice!");
         if (input == 1) {
-            username = usernameInfoScreen("Please enter username!");
-            password = passwordInfoScreen("Please enter password!");
+            this.username = usernameInfoScreen("Please enter username!");
+            this.password = passwordInfoScreen("Please enter password!");
             io.saveUserData(username, password);
-        } else {
+        } else if(input == 2) {
             exit();
         }
     }
