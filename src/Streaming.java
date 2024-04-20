@@ -25,5 +25,6 @@ public class Streaming {
     void createAccount(String username, String password) {
         this.username = username;
         this.password = password;
+        io.saveUserData(username, password);
     }
 }

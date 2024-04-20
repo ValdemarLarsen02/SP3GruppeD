@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Menu {
     private ArrayList<String> listOfActions;
-    private ArrayList<String> listOfActionss;
+    private ArrayList<String> listOfActions2;
+    private ArrayList<String> optionslist;
     private Util util;
     private Streaming stream;
     private Media media;
@@ -21,7 +22,7 @@ public class Menu {
     public void startMenu() {
         this.util = new Util();
         util.displayMsg("Welcome to Streaming Service!");
-
+        mainMenu();
         listOfActions = new ArrayList<>();
         listOfActions.add("1) Login");
         listOfActions.add("2) Register");
@@ -34,14 +35,14 @@ public class Menu {
 
             switch (action) {
                 case 1:
-                    this.username = this.usernameInfoScreen();
-                    this.password = this.passwordInfoScreen();
+                    this.username = this.usernameInfoScreen("Please enter username!");
+                    this.password = this.passwordInfoScreen("Please enter password!");
                     user.login(this.username, this.password);
                     mainMenu();
                     break;
                 case 2:
-                    this.username = this.usernameInfoScreen();
-                    this.password = this.passwordInfoScreen();
+                    this.username = this.usernameInfoScreen("Please enter username!");
+                    this.password = this.passwordInfoScreen("Please enter password!");
                     stream.createAccount(this.username, this.password);
                     mainMenu();
                     break;
@@ -58,42 +59,53 @@ public class Menu {
         io.saveMediaData("");
     }
 
-    public String usernameInfoScreen() {
+    public String usernameInfoScreen(String msg) {
         String username;
-        username = util.promptText("Please enter username!");
+        username = util.promptText(msg);
         return username;
 
     }
 
-    public String passwordInfoScreen() {
+    public String passwordInfoScreen(String msg) {
         String password;
-        password = util.promptText("Please enter password!");
+        password = util.promptText(msg);
         return password;
     }
     public void settings() {
-        util.promptChoice()
+
+        optionslist = new ArrayList<>();
+        optionslist.add("1) Change password");
+        optionslist.add("2) Exit");
+        int input =  util.promptChoice(optionslist, "Make a choice!");
+        if (input == 1) {
+            username = usernameInfoScreen("Please enter username!");
+            password = passwordInfoScreen("Please enter password!");
+            io.saveUserData(username, password);
+        } else {
+            exit();
+        }
     }
 
     public String mainMenu() {
         util.displayMsg("Make a choice!");
-        listOfActionss = new ArrayList<>();
-        listOfActionss.add("1) Movies");
-        listOfActionss.add("2) Shows");
-        listOfActionss.add("3) Genre");
-        listOfActionss.add("4) Search");
-        listOfActionss.add("5) Settings");
-        listOfActionss.add("4) exit");
+        listOfActions2 = new ArrayList<>();
+        listOfActions2.add("1) Movies");
+        listOfActions2.add("2) Shows");
+        listOfActions2.add("3) Genre");
+        listOfActions2.add("4) Search");
+        listOfActions2.add("5) Settings");
+        listOfActions2.add("6) exit");
 
         int action1 = 0;
-        while (action1 != listOfActionss.size()) {
-            action1 = util.promptChoice(listOfActionss, "");
+        while (action1 != listOfActions2.size()) {
+            action1 = util.promptChoice(listOfActions2, "");
 
             switch (action1) {
                 case 1:
-                    media.watch(1);
+                    //media.watch(1);
                     break;
                 case 2:
-                    media.watch(2);
+                    //media.watch(2);
                     break;
                 case 3:
                     sh.genreSearch("");
@@ -102,9 +114,11 @@ public class Menu {
                     sh.searchInput("");
                     break;
                 case 5:
-
-
-
+                    settings();
+                    break;
+                case 6:
+                    exit();
+                    break;
             }
         }
         return null;
