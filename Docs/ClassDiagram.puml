@@ -31,7 +31,7 @@ Class SearchHandler {
 }
 
 Class FileIO{
-+ fileReader(path)
++ readFile(path)
 + saveMediaData(String title)
 + saveUserData(String username, String password)
 }
