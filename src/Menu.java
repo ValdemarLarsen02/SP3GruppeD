@@ -22,7 +22,6 @@ public class Menu {
     public void startMenu() {
         this.util = new Util();
         util.displayMsg("Welcome to Streaming Service!");
-        mainMenu();
         listOfActions = new ArrayList<>();
         listOfActions.add("1) Login");
         listOfActions.add("2) Register");
