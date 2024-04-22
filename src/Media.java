@@ -40,7 +40,7 @@ public abstract class Media {
         util.displayMsg("You are now watching " + this.title + "!");
     }
 
-    int i = 0;
+    /*int i = 0;
     void turnPage() {
 
         for (int j = i; j < i + 10 && j < movie.size(); j++) {
@@ -48,7 +48,10 @@ public abstract class Media {
 
         }
         i += 10;
-    }
+
+
+    }*/
+
 
     public int getReleaseYear() {
         return releaseYear;
