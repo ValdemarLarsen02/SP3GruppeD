@@ -5,6 +5,7 @@ import java.util.List;
 
 public abstract class Media {
     Util util = new Util();
+    FileIO fileIO = new FileIO();
 
     private int releaseYear;
     private String title;
@@ -43,7 +44,7 @@ public abstract class Media {
     /*int i = 0;
     void turnPage() {
 
-        for (int j = i; j < i + 10 && j < movie.size(); j++) {
+        for (int j = i; j < i + 10 && j < .size(); j++) {
             System.out.println((movie.get(j)));
 
         }
@@ -69,7 +70,7 @@ public abstract class Media {
         return rating;
     }
 
-    public void setReleaseYear(int releaseYear) {
+   /* public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 
@@ -83,6 +84,6 @@ public abstract class Media {
 
     public void setRating(double rating) {
         this.rating = rating;
-    }
+    }*/
 }
 
