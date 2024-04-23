@@ -1,17 +1,20 @@
 package src;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Shows extends Media{
-
-    List<Seasons> seasons = new ArrayList<>();
-
+    private List<Seasons> seasons = new ArrayList<>();
 
     public Shows(String title, int releaseYear, String category, double rating) {
-        super(title, releaseYear, category, rating);
+        super(title, releaseYear, category, rating);  // Brug '0' som placeholder for rating, hvis nødvendigt
     }
+
+    public void addSeason(int seasonNumber, int episodeCount) {
+        seasons.add(new Seasons(seasonNumber, episodeCount));
+    }
+
 
     @Override
     void watchLater(User user) {

@@ -1,7 +1,7 @@
 package src;
 
 import java.util.ArrayList;
-
+import java.util.List;
 public class Menu {
     private ArrayList<String> listOfActions;
     private ArrayList<String> listOfActions2;
@@ -41,7 +41,7 @@ public class Menu {
                 case 2:
                     this.username = this.usernameInfoScreen("Please enter username!");
                     this.password = this.passwordInfoScreen("Please enter password!");
-                    stream.createAccount(this.username, this.password);
+                    //stream.createAccount(this.username, this.password);
                     mainMenu();
                     break;
                 case 3:
@@ -85,6 +85,9 @@ public class Menu {
     }
 
     public String mainMenu() {
+        // instantiering af film og serier
+        media = new Movies("Some title", 2000, "Some category", 5.0);
+        media = new Shows( "random", 0, "test", 5.0);
         util.displayMsg("Make a choice!");
         listOfActions2 = new ArrayList<>();
         listOfActions2.add("1) Movies");
@@ -100,10 +103,14 @@ public class Menu {
 
             switch (action1) {
                 case 1:
-                    //media.watch(1);
+                    String moviesPath = "data/film.txt"; // Erstat med den korrekte sti til dine filmdata
+                    List<Media> movies = Media.loadMedia(moviesPath);
+                    media.displayMediaList(movies, 0, 30);
                     break;
                 case 2:
-                    //media.watch(2);
+                    String seriePath = "data/serier.txt"; // Erstat med den korrekte sti til dine filmdata
+                    List<Media> shows = Media.loadMedia(seriePath);
+                    media.displayMediaList(shows, 0, 20);
                     break;
                 case 3:
                     sh.genreSearch("");

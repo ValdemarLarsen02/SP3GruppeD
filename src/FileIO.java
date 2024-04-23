@@ -8,51 +8,89 @@ import java.util.Scanner;
 
 public class FileIO {
 
-
-
     // Læser filen udfra given path og returner den data der er blevet hentet i en Arraylist.
     public List<Media> readFile(String path) {
         List<Media> mediaList = new ArrayList<>();
-        File file = new File(path);
-
-        try (Scanner scanner = new Scanner(file)) {
+        try {
+            File file = new File(path);
+            Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                handleFetchedData(line, mediaList);
+                Media media = parseLine(line, path);
+                if (media != null) {
+                    mediaList.add(media);
+                }
             }
+            scanner.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Filen blev ikke fundet i følgende sti " + path + " " + e.getMessage());
-            return null;
+            System.out.println("Filen blev ikke hentet. " + e.getMessage());
         }
-
         return mediaList;
     }
+
+    private Media parseLine(String line, String path) {
+        String[] data = line.split("; ");
+
+        if (path.contains("film.txt")) {
+            if (data.length != 4) {
+                System.err.println("Ugyldig linjeformat for film: " + line);
+                return null;
+            }
+            String title = data[0].trim();
+            int releaseYear = Integer.parseInt(data[1].trim());
+            String category = data[2].trim();
+            String ratingStr = data[3].trim();
+            ratingStr = ratingStr.replace(',', '.'); // Erstat komma med punktum
+            double rating = Double.parseDouble(ratingStr.replaceAll("[^\\d.]", ""));
+            return new Movies(title, releaseYear, category, rating);
+        } else if (path.contains("serier.txt")) {
+            if (data.length != 5) {
+                System.err.println("Ugyldig linjeformat for serier: " + line);
+                return null;
+            }
+            String title = data[0].trim();
+            String tempReleaseYear = data[1].trim();
+            int releaseYear = Integer.parseInt(tempReleaseYear.split("-")[0]);
+            String category = data[2].trim();
+            String ratingStr = data[3].trim();
+            ratingStr = ratingStr.replace(',', '.'); // Erstat komma med punktum
+            double rating = Double.parseDouble(ratingStr);
+            Shows show = new Shows(title, releaseYear, category, rating);
+
+            String seasonsData = data[4].trim();
+            seasonsData = seasonsData.replace(";", ""); // Fjerner det semikolan der er for enden af hver linje
+            String[] seasonPairs = seasonsData.split(",\\s*"); // Splitter op ved komma samt fjerner det mellerum der er.
+            for (String pair : seasonPairs) {
+                String[] seasonInfo = pair.split("-");
+                if (seasonInfo.length == 2) {
+                    try {
+                        int seasonNumber = Integer.parseInt(seasonInfo[0].trim());
+                        int episodeCount = Integer.parseInt(seasonInfo[1].trim());
+                        show.addSeason(seasonNumber, episodeCount);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Fejl dat season og epsiode skulle hentes.. " + e.getMessage());
+                    }
+                } else {
+                    System.err.println("Ugyldigt format for sæson-episode: " + pair);
+                }
+            }
+
+            return show;
+        }
+
+        return null;
+    }
+
+
+
 
 
     /*
         val
      */
-    private void handleFetchedData(String line, List<Media> mediaList) {
-        String[] data = line.split(";");
-            if (data.length == 4) {
-                int releaseYear = Integer.parseInt(data[1].substring(0,4).trim()); // Giver os det første år.
-                String title = data[0].trim();
-                String category = data[2].trim();
-                double rating = Double.parseDouble(data[3].trim().replace(',', '.'));
 
 
-                Movies movie = new Movies(title, releaseYear, category, rating);
-                mediaList.add(movie);
-            } else if (data.length == 5) {
-                int releaseYear = Integer.parseInt(data[1].substring(0, 4).trim());
-                String title = data[0].trim();
-                String category = data[2].trim();
-                String episodes = data[4].trim();
-                // data til Shows
-            }
 
-
-    }
 
     void saveMediaData(String title){
 

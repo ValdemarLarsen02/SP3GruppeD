@@ -30,7 +30,7 @@ public class Util {
         System.out.println(msg);
     }
 
-    public int promptChoice(ArrayList<String> optionslist, String msg) {//["Gin&Tonic", "Beer","Vine" ]
+    public int promptChoice(ArrayList<String> optionslist, String msg) {
         displayList(optionslist, "");
         int input = promptNumeric("");//1
         //  return optionslist.get(input-1);

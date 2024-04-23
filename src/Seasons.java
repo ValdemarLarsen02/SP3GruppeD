@@ -1,18 +1,21 @@
 package src;
 
-public class Seasons extends Media {
 
-    public Seasons(String title, int releaseYear, String category, double rating) {
-        super(title, releaseYear, category, rating);
+public class Seasons {
+
+    private int seasonNumber;
+    private int episodeCount;
+    public Seasons(int seasonNumber, int episodeCount) {
+        this.seasonNumber = seasonNumber;
+        this.episodeCount = episodeCount;
     }
 
-    @Override
-    void alreadyWatched(User user) {
-        super.alreadyWatched(user);
+    // skal jeg måske bruge til at hente udvalgte episoder og seasons.
+    public int getSeasonNumber() {
+        return seasonNumber;
     }
 
-    @Override
-    void watch() {
-        super.watch();
+    public int getEpisodeCount() {
+        return episodeCount;
     }
 }

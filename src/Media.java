@@ -41,6 +41,28 @@ public abstract class Media {
         util.displayMsg("You are now watching " + this.title + "!");
     }
 
+
+    // I Media klassen
+    public static List<Media> loadMedia(String pathToFile) {
+        FileIO fileIO = new FileIO();
+        return fileIO.readFile(pathToFile);
+    }
+
+    public void displayMedia(int startIndex, int count) {
+        List<Media> mediaList = loadMedia(this.getClass().getSimpleName().toLowerCase() + ".txt"); // Dette vil vælge filnavnet baseret på klassenavnet
+        displayMediaList(mediaList, startIndex, count);
+    }
+
+    public void displayMediaList(List<Media> mediaList, int startIndex, int count) {
+        for (int i = startIndex; i < startIndex + count && i < mediaList.size(); i++) {
+            Media media = mediaList.get(i);
+            System.out.println((i + 1) + ". Title: " + media.getTitle() + ", Release Year: " + media.getReleaseYear() + ", Category: " + media.getCategory() + ", Rating: " + media.getRating());
+        }
+    }
+
+
+
+
     /*int i = 0;
     void turnPage() {
 

@@ -28,6 +28,8 @@ public class Movies extends Media{
         super.watch();
     }
 
+
+
     public String toString(){
         return getTitle() + "\n" +
                 getCategory() + "\n" +
