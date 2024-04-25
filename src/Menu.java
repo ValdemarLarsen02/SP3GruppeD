@@ -9,10 +9,10 @@ public class Menu {
     private ArrayList<String> listOfActions2;
     private ArrayList<String> optionslist;
     private Util util;
-    private User user;
+    private User user = new User();
     private Streaming streaming = new Streaming();
     private Media media;
-    private SearchHandler sh;
+    private SearchHandler sh = new SearchHandler();
     private String username;
     private String password;
     private Category category;
@@ -40,8 +40,14 @@ public class Menu {
                 case 1:
                     this.username = this.usernameInfoScreen("Please enter username!");
                     this.password = this.passwordInfoScreen("Please enter password!");
-                    mainMenu();
-                    user.login(this.username, this.password);
+                    if(user.login(this.username, this.password, "data/Users.csv")){
+                        util.displayMsg("Du er nu logget ind");
+                        mainMenu();
+                    }
+                    else{
+                        util.displayMsg("Dit brugernavn eller kodeord er forkert, prøv igen");
+                    }
+
                     break;
                 case 2:
                     this.username = this.usernameInfoScreen("Please enter username!");
@@ -92,8 +98,11 @@ public class Menu {
     public ArrayList<Media> mainMenu() {
         this.sh = new SearchHandler();
         // instantiering af film og serier
-       //media = new Movies("Some title", 2000, Category , 2.0);
-        //media = new Shows( "random", 0, Category , 5.0);
+        ArrayList<Category> categories = new ArrayList<>();
+        media = new Movies("Some title", 2000, categories , 2.0);
+        media = new Shows( "random", 0, categories , 5.0);
+
+
         util.displayMsg("Make a choice!");
         listOfActions2 = new ArrayList<>();
         listOfActions2.add("1) Movies");
