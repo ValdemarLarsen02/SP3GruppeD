@@ -123,9 +123,8 @@ public class FileIO {
 
     void saveUserData(String username, String password, String path){
         try {
-
             FileWriter fw = new FileWriter(path, true);
-            fw.write("Username: " + "Password:");
+            fw.write("Username: " + "Password:" + "\n");
             fw.write(username + "," + password);
             fw.flush();
         } catch (IOException e) {

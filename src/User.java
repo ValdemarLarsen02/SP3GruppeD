@@ -18,7 +18,7 @@ public class User {
         try (BufferedReader br = new BufferedReader(new FileReader("data/Users.csv"))) {
             while ((line = br.readLine()) != null) {
                 String[] userData = line.split(csvSplitBy);
-                if (userData.length >= 1 && userData[0].equals(username) && userData[1].equals(password)) {
+                if (userData.length >= 0 && userData[0].equals(username) && userData[1].equals(password)) {
                     return true;
                 }
             }

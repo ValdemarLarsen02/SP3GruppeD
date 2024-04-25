@@ -47,7 +47,6 @@ public class Menu {
                     else{
                         util.displayMsg("Dit brugernavn eller kodeord er forkert, prøv igen");
                     }
-
                     break;
                 case 2:
                     this.username = this.usernameInfoScreen("Please enter username!");
@@ -65,7 +64,6 @@ public class Menu {
 
 
     public void exit() {
-        //io.saveMediaData("");
     }
 
     public String usernameInfoScreen(String msg) {
