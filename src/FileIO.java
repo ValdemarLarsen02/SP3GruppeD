@@ -122,14 +122,15 @@ public class FileIO {
 
     void saveUserData(String username, String password, String path){
         try {
-            FileWriter fw = new FileWriter(path, true);
-            fw.write("Username: " + "Password:" + "\n");
-            fw.write(username + "," + password);
+            FileWriter fw = new FileWriter(path, true); // 'true' for at tilføje til filen i stedet for at overskrive
+            fw.write(username + "," + password + "\n"); // Tilføj '\n' for at sikre ny linje
             fw.flush();
+            fw.close(); // Det er god praksis at lukke FileWriter efter brug
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
         }
     }
+
 
     public void addWatchLater(User user, Media media) {
         String title = media.getTitle();
