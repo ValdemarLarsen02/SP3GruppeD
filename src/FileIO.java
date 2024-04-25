@@ -49,7 +49,8 @@ public class FileIO {
             String ratingStr = data[3].trim();
             ratingStr = ratingStr.replace(',', '.'); // Erstat komma med punktum
             double rating = Double.parseDouble(ratingStr.replaceAll("[^\\d.]", ""));
-            return new Movies(title, releaseYear, category, rating);
+            ArrayList<Category> categories = getCategories(category);
+            return new Movies(title, releaseYear, categories, rating);
         } else if (path.contains("serier.txt")) {
             if (data.length != 5) {
                 System.err.println("Ugyldig linjeformat for serier: " + line);
@@ -62,7 +63,8 @@ public class FileIO {
             String ratingStr = data[3].trim();
             ratingStr = ratingStr.replace(',', '.'); // Erstat komma med punktum
             double rating = Double.parseDouble(ratingStr);
-            Shows show = new Shows(title, releaseYear, category, rating);
+            ArrayList<Category> categories = getCategories(category);
+            Shows show = new Shows(title, releaseYear, categories, rating);
 
             String seasonsData = data[4].trim();
             seasonsData = seasonsData.replace(";", ""); // Fjerner det semikolan der er for enden af hver linje
@@ -96,15 +98,22 @@ public class FileIO {
         val
      */
 
+    public static ArrayList<Category> getCategories(String data) {
+        String[] categoriesData = data.split(",");
+        ArrayList<Category> categories = new ArrayList<>();
+        for(String s : categoriesData) {
+            categories.add(Category.findCategory(s));
+        }
+        return categories;
+    }
 
 
-
-    void saveMediaData(String title, int releaseYear, String category, double rating, String path) {
+    void saveMediaData(String title, int releaseYear, ArrayList<Category> category, double rating) {
         try {
-            FileWriter fw = new FileWriter(path, true);
+            FileWriter fw = new FileWriter(mediaDataPath, true);
             fw.write("title, releaseYear, category, rating\n");
             fw.write(title + "," + releaseYear + "," + category + "," + rating + "\n");
-            fw.flush();
+            fw.close();
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
         }
@@ -113,10 +122,11 @@ public class FileIO {
 
     void saveUserData(String username, String password, String path){
         try {
+
             FileWriter fw = new FileWriter(path, true);
-            fw.write("Username: " + "Password:\n");
+            fw.write("Username: " + "Password:");
             fw.write(username + "," + password);
-            fw.close();
+            fw.flush();
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
         }

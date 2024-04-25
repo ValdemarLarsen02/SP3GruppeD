@@ -42,7 +42,8 @@ Class SearchHandler {
 
 Class FileIO{
 + private void handledFetchedData(String line, List<Media> mediaList)
-+ readFile(String path);
++ public List<Media> readFile(String path);
++ private Media parseLine(String line, String path);
 + saveMediaData(String title);
 + saveUserData(String username, String password);
 }
@@ -82,15 +83,15 @@ Class Shows{
 + public String toString()
 }
 
-Main *-- Streaming
-Streaming--* User
-Streaming --* FileIO
-Streaming --* Menu
-Streaming --* Media
+Main --* Streaming
+Streaming *-- User
+Streaming *-- FileIO
+Streaming *-- Menu
+Streaming *-- Media
 Media <|-- Movies
 Media <|-- Shows
-Streaming --* SearchHandler
-Streaming --* Util
+Streaming *-- SearchHandler
+Streaming *-- Util
 
 
 
