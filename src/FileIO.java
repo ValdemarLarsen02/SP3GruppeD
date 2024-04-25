@@ -115,7 +115,7 @@ public class FileIO {
         try {
             FileWriter fw = new FileWriter(path, true);
             fw.write("Username: " + "Password:\n");
-            fw.write(username + ", " + password);
+            fw.write(username + "," + password);
             fw.close();
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
