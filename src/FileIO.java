@@ -119,7 +119,6 @@ public class FileIO {
         }
     }
 
-
     void saveUserData(String username, String password, String path){
         try {
             FileWriter fw = new FileWriter(path, true);
