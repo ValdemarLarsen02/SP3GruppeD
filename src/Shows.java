@@ -33,8 +33,8 @@ public class Shows extends Media{
     }
 
     @Override
-    void watch() {
-        super.watch();
+    void watch(String title) {
+        super.watch(title);
     }
 
     public String toString(){

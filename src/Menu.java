@@ -121,11 +121,15 @@ public class Menu {
                     String moviesPath = "data/film.txt"; // Erstat med den korrekte sti til dine filmdata
                     List<Media> movies = Media.loadMedia(moviesPath);
                     media.displayMediaList(movies, 0, 20);
+                    int choice = util.promptNumeric("Select a movie:");
+                    media.watch(String.valueOf(movies.get(choice-1)));
                     break;
                 case 2:
                     String seriePath = "data/serier.txt"; // Erstat med den korrekte sti til dine filmdata
                     List<Media> shows = Media.loadMedia(seriePath);
                     media.displayMediaList(shows, 0, 20);
+                    int choice1 = util.promptNumeric("Select a movie:");
+                    media.watch(String.valueOf(shows.get(choice1-1)));
                     break;
                 case 3:
                     ArrayList<Category> allCategories = new ArrayList<>(Arrays.asList(Category.values()));

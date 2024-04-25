@@ -35,8 +35,8 @@ public abstract class Media {
     }
 
 
-    void watch() {
-        util.displayMsg("You are now watching " + this.title + "!");
+    void watch(String title) {
+        util.displayMsg("You are now watching " + title + "!");
     }
 
 
