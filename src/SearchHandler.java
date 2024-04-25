@@ -20,12 +20,13 @@ public class SearchHandler {
         for (Media m : movies) {
             if (m.title.matches(input)) {
                 result.add(m);
-
             }
 
         }
     return result;
     }
+
+
 
     public ArrayList<Media> genreSearch(Category c){
         ArrayList<Media> returnMedia = new ArrayList<>();

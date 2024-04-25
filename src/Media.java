@@ -46,17 +46,26 @@ public abstract class Media {
         return fileIO.readFile(pathToFile);
     }
 
-    public void displayMedia(int startIndex, int count) {
-        List<Media> mediaList = loadMedia(this.getClass().getSimpleName().toLowerCase() + ".txt"); // Dette vil vælge filnavnet baseret på klassenavnet
-        displayMediaList(mediaList, startIndex, count);
-    }
-
     public void displayMediaList(List<Media> mediaList, int startIndex, int count) {
         for (int i = startIndex; i < startIndex + count && i < mediaList.size(); i++) {
             Media media = mediaList.get(i);
-            System.out.println((i + 1) + ". Title: " + media.getTitle() + ", Release Year: " + media.getReleaseYear() + ", Category: " + media.getCategory() + ", Rating: " + media.getRating());
+            System.out.println((i + 1) + ". Title: " + media.getTitle() + ", Udgivelse år: " + media.getReleaseYear() + ", Kategori: " + media.getCategory() + ", Scorer: " + media.getRating());
         }
     }
+
+
+    public void searchMediaByTitle(List<Media> mediaList, String title) {
+        System.out.println("Kører koden");
+        for (int i = 0; i < mediaList.size(); i++) {
+            Media media = mediaList.get(i);
+            if (media.getTitle().equals(title)) {
+                System.out.println((i + 1) + ". Title: " + media.getTitle());
+            }
+        }
+    }
+
+
+
 
     public int getReleaseYear() {
         return releaseYear;

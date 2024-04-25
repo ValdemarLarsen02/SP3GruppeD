@@ -140,8 +140,10 @@ public class Menu {
 
                 case 4:
                     String input1 = util.promptText("Please make a search:");
-                    ArrayList<Media> media1 = sh.searchInput(input1);
-                    System.out.println(media1);
+                    List<Media> moviess = Media.loadMedia("data/film.txt");
+                    media.searchMediaByTitle(moviess, input1);
+                    //ArrayList<Media> media1 = sh.searchInput(input1);
+                    //System.out.println(media1);
                     break;
                 case 5:
                     settings();

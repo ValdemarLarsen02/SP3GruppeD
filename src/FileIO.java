@@ -35,6 +35,7 @@ public class FileIO {
         return mediaList;
     }
 
+
     private Media parseLine(String line, String path) {
         String[] data = line.split("; ");
 
