@@ -1,86 +1,97 @@
 @startuml
 !pragma layout smetana
 
-Class Main{
-+static void main(String[] args)
+class User {
+    - username: String
+    - password: String
+    + login(username: String, password: String, path: String): boolean
 }
 
-Class Menu{
- - private ArrayList<String> listOfActions
- - private ArrayList<String> optionsList
- - private ArrayList<String> listOfActions2
- - private String username
- - private String password
- + public void MainMenu();
- + Public void StartMenu();
- + Public void CreateAccount();
- + public void exit();
- + public String usernameInfoScreen();
- + public String passwordInfoScreen();
- + public void settings();
+class FileIO {
+    - mediaDataPath: String
+    + readFile(path: String): List
+    + saveMediaData(title: String, releaseYear: int, category: ArrayList<Category>, rating: double): void
+    + saveUserData(username: String, password: String, path: String): void
+    + getCategories(data: String): ArrayList<Category>
 }
 
-
-
-Class Streaming #back:lightgreen|yellow;header:blue/red {
-    -Util
-    + Streaming(String menuType);
-    + createAccount(String username, String password);
+abstract class Media {
+    - releaseYear: int
+    - title: String
+    - categories: ArrayList<Category>
+    - rating: double
+    + watchLater(user: User): void
+    + removeFromWatchLater(user: User): void
+    + alreadyWatched(user: User): void
+    + watch(title: String): void
+    + loadMedia(pathToFile: String): List
+    + displayMedia(startIndex: int, count: int): void
+    + displayMediaList(mediaList: List, startIndex: int, count: int): void
+    + getReleaseYear(): int
+    + getTitle(): String
+    + getCategory(): ArrayList<Category>
+    + getRating(): double
 }
 
-Class User{
-- String Username
-- String Password
-+ Login(String username, String password);
+class Movies {
+    + Movies(title: String, releaseYear: int, category: ArrayList<Category>, rating: double)
+    + toString(): String
 }
 
-Class SearchHandler {
-- String input
-+ ArrayList<Media> search(String input);
-
+class Shows {
+    - seasons: List
+    + addSeason(seasonNumber: int, episodeCount: int): void
+    + Shows(title: String, releaseYear: int, category: ArrayList<Category>, rating: double)
+    + toString(): String
 }
 
-Class FileIO{
-+ private void handledFetchedData(String line, List<Media> mediaList)
-+ public List<Media> readFile(String path);
-+ private Media parseLine(String line, String path);
-+ saveMediaData(String title);
-+ saveUserData(String username, String password);
+class Category {
+
+    + findCategory(s: String): Category
 }
 
-Abstract Media{
-- int releaseYear
-- String name
-- String category
-- double rating
-+ Media(String title, int releaseYear, String category, double rating);
-+ void watchLater(User user);
-+ void removeFromWatchLater(User user);
-+ void alreadyWatched(User user);
-+ void watch();
-+ int getReleaseYear();
-+ String getTitle();
-+ String getCategory();
-+ double getRating();
+class Util {
+    - scanner: Scanner
+    + displayList(list: ArrayList<String>, msg: String): void
+    + promptText(msg: String): String
+    + promptNumeric(msg: String): int
+    + displayMsg(msg: String): String
+    + promptChoice(optionslist: ArrayList<String>, msg: String): int
 }
 
-Class Util{
-- Scanner scanner
-+ displayList(ArrayList<String> list, String msg);
-+ String promptText(String msg);
-+ int promptNumeric(String msg);
-+ int PromptChoice(String msg, ArrayList<String> list)
-+ void displayMsg(String msg)
+class SearchHandler {
+    - input: String
+    - media: Media
+    - menu: Menu
+    + searchInput(input: String): ArrayList
+    <Media>
+    + genreSearch(c: Category): ArrayList
 }
 
-Class Movies{
-public String toString()
+class Streaming {
+    - listOfActions: ArrayList<String>
+    - io: FileIO
+    - util: Util
+    - menu: Menu
+    - username: String
+    - password: String
+    + createAccount(username: String, password: String, path: String): void
 }
 
-Class Shows{
-- ArrayList<Seasons>
-- ArrayList<Episodes>
-+ public String toString()
+class Seasons {
+    - seasonNumber: int
+    - episodeCount: int
+    + Seasons(seasonNumber: int, episodeCount: int)
+    + getSeasonNumber(): int
+    + getEpisodeCount(): int
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+class Menu {
+    + startMenu(): void
 }
 
 Main --* Streaming
