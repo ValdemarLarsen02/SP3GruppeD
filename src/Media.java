@@ -19,9 +19,11 @@ public abstract class Media {
         this.rating = rating;
     }
 
-    void watchLater(User user) {
+    void watchLater(User user, Media media) {
        // watchLaterList.add(user);
-        util.displayMsg("You have added " + this.title + " to your watch list.");
+        util.displayMsg("You have added " + media.getTitle() + " to your watch list.");
+
+        fileIO.addWatchLater(user, media);
     }
 
     void removeFromWatchLater(User user) {
@@ -49,17 +51,23 @@ public abstract class Media {
     public void displayMediaList(List<Media> mediaList, int startIndex, int count) {
         for (int i = startIndex; i < startIndex + count && i < mediaList.size(); i++) {
             Media media = mediaList.get(i);
-            System.out.println((i + 1) + ". Title: " + media.getTitle() + ", Udgivelse år: " + media.getReleaseYear() + ", Kategori: " + media.getCategory() + ", Scorer: " + media.getRating());
+            System.out.println((i + 1) + ". Title: " + media.getTitle() + ", Release year: " + media.getReleaseYear() + ", Categori: " + media.getCategory() + ", Rating: " + media.getRating());
         }
     }
 
 
-    public void searchMediaByTitle(List<Media> mediaList, String title) {
-        System.out.println("Kører koden");
+    public void searchMediaByTitle(List<Media> mediaList, String title, User user) {
         for (int i = 0; i < mediaList.size(); i++) {
             Media media = mediaList.get(i);
             if (media.getTitle().equals(title)) {
                 System.out.println((i + 1) + ". Title: " + media.getTitle());
+                String choice = util.promptText("What do you want to do? watch/watch later/back");
+                if (choice.equals("watch")) {
+                    watch(media.getTitle());
+                } else if (choice.equals("watch later")) {
+                    System.out.println(user.getLoggedInUsername());
+                    watchLater(user, media); // Bruger vil se senere
+                }
             }
         }
     }

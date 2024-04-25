@@ -144,11 +144,15 @@ public class Menu {
                 case 4:
                     String input1 = util.promptText("Please make a search:");
                     List<Media> moviess = Media.loadMedia("data/film.txt");
-                    media.searchMediaByTitle(moviess, input1);
+                    media.searchMediaByTitle(moviess, input1, user);
                     //ArrayList<Media> media1 = sh.searchInput(input1);
                     //System.out.println(media1);
                     break;
                 case 5:
+                    String inputShows = util.promptText("Søg efter en serie");
+                    List<Media> shows2 = Media.loadMedia("data/serier.txt");
+                    media.searchMediaByTitle(shows2, inputShows, user);
+                    break;
                 case 6:
                     settings();
                     break;

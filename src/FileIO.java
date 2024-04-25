@@ -130,8 +130,25 @@ public class FileIO {
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
         }
-
     }
+
+    public void addWatchLater(User user, Media media) {
+        String title = media.getTitle();
+        String username = user.getLoggedInUsername();
+
+        try (FileWriter writer = new FileWriter("data/watch_later.csv", true)) {
+            writer.append(username);
+            writer.append(",");
+            writer.append(title);
+            writer.append("\n");
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
 }

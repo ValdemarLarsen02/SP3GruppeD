@@ -18,8 +18,8 @@ public class Shows extends Media{
 
 
     @Override
-    void watchLater(User user) {
-        super.watchLater(user);
+    void watchLater(User user, Media media) {
+        super.watchLater(user, media);
     }
 
     @Override

@@ -7,9 +7,13 @@ import java.io.IOException;
 public class User {
     FileIO fileIO = new FileIO();
     Util util = new Util();
-
+    private String loggedInUsername;
     private String username;
     private String password;
+
+
+
+
 
 
     public boolean login(String username, String password, String path) {
@@ -19,6 +23,7 @@ public class User {
             while ((line = br.readLine()) != null) {
                 String[] userData = line.split(csvSplitBy);
                 if (userData.length >= 0 && userData[0].equals(username) && userData[1].equals(password)) {
+                    loggedInUsername = username;
                     return true;
                 }
             }
@@ -26,6 +31,10 @@ public class User {
             System.err.println("Error reading user data: " + e.getMessage());
         }
         return false;
+    }
+
+    public String getLoggedInUsername() {
+        return loggedInUsername;
     }
 }
 
