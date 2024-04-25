@@ -26,8 +26,9 @@ public class Util {
     }
 
 
-    void displayMsg(String msg) {
+    String displayMsg(String msg) {
         System.out.println(msg);
+        return msg;
     }
 
     public int promptChoice(ArrayList<String> optionslist, String msg) {

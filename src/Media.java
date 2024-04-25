@@ -30,7 +30,7 @@ public abstract class Media {
     }
 
     void alreadyWatched(User user) {
-        fileIO.saveMediaData(this.title, this.releaseYear, this.category, this.rating);
+       // fileIO.saveMediaData(this.title, this.releaseYear, this.category, this.rating);
         util.displayMsg("You have already watched " + this.title);
     }
 

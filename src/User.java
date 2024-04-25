@@ -1,15 +1,32 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class User {
     FileIO fileIO = new FileIO();
+    Util util = new Util();
 
     private String username;
     private String password;
 
-    void login(String username, String password) {
-        this.username = username;
-        this.password = password;
-        //Tjek om username og password ligger i vores fil til at gemme userdata
-    }
 
+    public boolean login(String username, String password, String path) {
+        String line;
+        String csvSplitBy = ",";
+        try (BufferedReader br = new BufferedReader(new FileReader("data/Users.csv"))) {
+            while ((line = br.readLine()) != null) {
+                String[] userData = line.split(csvSplitBy);
+                if (userData.length >= 1 && userData[0].equals(username) && userData[1].equals(password)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading user data: " + e.getMessage());
+        }
+        return false;
+    }
 }
+
+

@@ -99,12 +99,12 @@ public class FileIO {
 
 
 
-    void saveMediaData(String title, int releaseYear, String category, double rating) {
+    void saveMediaData(String title, int releaseYear, String category, double rating, String path) {
         try {
-            FileWriter fw = new FileWriter(mediaDataPath, true);
+            FileWriter fw = new FileWriter(path, true);
             fw.write("title, releaseYear, category, rating\n");
             fw.write(title + "," + releaseYear + "," + category + "," + rating + "\n");
-            fw.close();
+            fw.flush();
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
         }
@@ -113,11 +113,10 @@ public class FileIO {
 
     void saveUserData(String username, String password, String path){
         try {
-
             FileWriter fw = new FileWriter(path, true);
-            fw.write("Username: " + "Password:");
+            fw.write("Username: " + "Password:\n");
             fw.write(username + "," + password);
-            fw.flush();
+            fw.close();
         } catch (IOException e) {
             ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
         }

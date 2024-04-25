@@ -6,12 +6,12 @@ public class Menu {
     private ArrayList<String> listOfActions;
     private ArrayList<String> listOfActions2;
     private ArrayList<String> optionslist;
-    private Util util;
+    private Util util = new Util();
     private Streaming streaming = new Streaming();
     private Media media;
-    private SearchHandler sh;
-    private User user;
-    private FileIO io;
+    private SearchHandler sh = new SearchHandler();
+    private User user = new User();
+    private FileIO io = new FileIO();
     private String username;
     private String password;
 
@@ -38,7 +38,14 @@ public class Menu {
                 case 1:
                     this.username = this.usernameInfoScreen("Please enter username!");
                     this.password = this.passwordInfoScreen("Please enter password!");
-                    user.login(this.username, this.password);
+                    if(user.login(this.username, this.password, "data/Users.csv")){
+                        util.displayMsg("Du er nu logget ind");
+                        mainMenu();
+                    }
+                    else{
+                        util.displayMsg("Dit brugernavn eller kodeord er forkert, prøv igen");
+                    }
+
                     break;
                 case 2:
                     this.username = this.usernameInfoScreen("Please enter username!");
