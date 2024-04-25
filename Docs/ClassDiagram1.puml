@@ -1,30 +1,72 @@
 @startuml
 !pragma layout smetana
+class User {
+    - loggedInUsername: String
 
-class Main {
-    + main(args: String[]): void
+    + login(username: String, password: String, path: String): boolean
+    + getLoggedInUsername(): String
 }
 
+class Media {
+    - title: String
+    - releaseYear: int
+    - categories: ArrayList<Category>
+    - rating: double
 
+    + watchLater(user: User, media: Media)
+    + removeFromWatchLater(user: User)
+    + alreadyWatched(user: User)
+    + watch(title: String)
+}
+
+class Movies extends Media {
+    + watchLater(user: User, media: Media)
+    + removeFromWatchLater(user: User)
+    + alreadyWatched(user: User)
+    + watch(title: String)
+}
+
+class Shows extends Media {
+    - seasons: List<Seasons>
+
+    + watchLater(user: User, media: Media)
+    + removeFromWatchLater(user: User)
+    + alreadyWatched(user: User)
+    + watch(title: String)
+}
+
+class Seasons {
+    - seasonNumber: int
+    - episodeCount: int
+}
+
+class Category {
+    + findCategory(s: String): Category
+}
+
+class Streaming {
+    - username: String
+    - password: String
+
+    + createAccount(username: String, password: String, path: String)
+}
 
 class FileIO {
-    - mediaDataPath: String
-    - path: String
-    - ui: Util
-    + readFile(path: String): List
+    + readFile(path: String): List<Media>
     + parseLine(line: String, path: String): Media
-    + getCategories(data: String): ArrayList<Category>
-    + saveMediaData(title: String, releaseYear: int, category: ArrayList<Category>, rating: double): void
-    + saveUserData(username: String, password: String, path: String): void
+    + saveMediaData(title: String, releaseYear: int, category: ArrayList<Category>, rating: double)
+    + saveUserData(username: String, password: String, path: String)
+    + addWatchLater(user: User, media: Media)
 }
+
 class Util {
-    + scanner: Scanner
-    + displayList(list: ArrayList<String>, msg: String): void
+    + displayList(list: ArrayList<String>, msg: String)
     + promptText(msg: String): String
     + promptNumeric(msg: String): int
-    + displayMsg(msg: String): String
+    + displayMsg(msg: String)
     + promptChoice(optionslist: ArrayList<String>, msg: String): int
 }
+
 class Menu {
     - listOfActions: ArrayList<String>
     - listOfActions2: ArrayList<String>
@@ -34,84 +76,30 @@ class Menu {
     - streaming: Streaming
     - media: Media
     - sh: SearchHandler
-    - username: String
-    - password: String
-    - category: Category
-    + ShowMenu(): void
-    + startMenu(): void
-    + exit(): void
+
+    + startMenu()
+    + exit()
     + usernameInfoScreen(msg: String): String
     + passwordInfoScreen(msg: String): String
-    + settings(): void
-    + mainMenu(): ArrayList
-}
-abstract class Media {
-    - util: Util
-    - fileIO: FileIO
-    - releaseYear: int
-    - title: String
-    - categories: ArrayList<Category>
-    - rating: double
-    + watchLater(user: User): void
-    + removeFromWatchLater(user: User): void
-    + alreadyWatched(user: User): void
-    + watch(title: String): void
-    + loadMedia(pathToFile: String): List
-    + displayMediaList(mediaList: List
-    , startIndex: int, count: int): void
-    + getReleaseYear(): int
-    + getTitle(): String
-    + getCategory(): ArrayList<Category>
-    + getRating(): double
-}
-class Movies {
-    + toString(): String
-}
-class Shows {
-    - seasons: List
-    + addSeason(seasonNumber: int, episodeCount: int): void
-    + toString(): String
-}
-enum Category {
-}
-class User {
-    - fileIO: FileIO
-    - util: Util
-    - username: String
-    - password: String
-    + login(username: String, password: String, path: String): boolean
-}
-class Streaming {
-    - listOfActions: ArrayList<String>
-    - io: FileIO
-    - util: Util
-    - menu: Menu
-    - username: String
-    - password: String
-    + createAccount(username: String, password: String, path: String): void
-}
-class Seasons {
-    - seasonNumber: int
-    - episodeCount: int
-    + getSeasonNumber(): int
-    + getEpisodeCount(): int
+    + settings()
+    + mainMenu(): ArrayList<Media>
 }
 
-FileIO -- Util
-Menu -- Util
-Menu -- User
-Menu -- Streaming
-Menu -- Media
-Menu -- SearchHandler
-Media <|-- Movies
-Media <|-- Shows
-Media <|-- SearchHandler
-Shows "1" *-- "1..*" Seasons
-Main -- Menu
-Main -- FileIO
-Main -- Util
-Main -- User
-Main -- Streaming
+class SearchHandler {
+    + searchInput(input: String): ArrayList<Media>
+    + genreSearch(c: Category): ArrayList<Media>
+}
 
+
+User "1" --|> Media
+User "1" --|> Movies
+User "1" --|> Shows
+Media "1" --|> Seasons
+Streaming "1" --|> User
+FileIO "1" --|> Media
+Menu "1" --|> User
+Menu "1" --|> Media
+Menu "1" --|> SearchHandler
+Util "1" --|> Menu
 
 @enduml

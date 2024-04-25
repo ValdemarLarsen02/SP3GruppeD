@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class SearchHandler {
-    private String input;
-    private Media media;
-    private Menu menu;
 
     public ArrayList<Media> searchInput(String input){
         ArrayList<Media> result = new ArrayList<>();
@@ -25,8 +22,6 @@ public class SearchHandler {
         }
     return result;
     }
-
-
 
     public ArrayList<Media> genreSearch(Category c){
         ArrayList<Media> returnMedia = new ArrayList<>();

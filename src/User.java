@@ -5,16 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class User {
-    FileIO fileIO = new FileIO();
-    Util util = new Util();
     private String loggedInUsername;
-    private String username;
-    private String password;
-
-
-
-
-
 
     public boolean login(String username, String password, String path) {
         String line;

@@ -10,10 +10,7 @@ import java.util.Scanner;
 
 public class FileIO {
     private String mediaDataPath = "data/MediaData.csv";
-    private String path;
     Util ui = new Util();
-
-
 
     // Læser filen udfra given path og returner den data der er blevet hentet i en Arraylist.
     public List<Media> readFile(String path) {

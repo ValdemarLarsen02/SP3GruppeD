@@ -15,8 +15,6 @@ public class Menu {
     private SearchHandler sh = new SearchHandler();
     private String username;
     private String password;
-    private Category category;
-
 
 
     public void ShowMenu() {

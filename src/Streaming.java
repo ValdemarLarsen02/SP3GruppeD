@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 
 public class Streaming {
-    private ArrayList<String> listOfActions;
     private FileIO io = new FileIO();
-    private Util util;
-    private Menu menu;
+
+
 
     String username;
     String password;
