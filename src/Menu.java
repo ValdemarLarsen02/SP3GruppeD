@@ -106,9 +106,10 @@ public class Menu {
         listOfActions2.add("1) Movies");
         listOfActions2.add("2) Shows");
         listOfActions2.add("3) Genre");
-        listOfActions2.add("4) Search");
-        listOfActions2.add("5) Settings");
-        listOfActions2.add("6) exit");
+        listOfActions2.add("4) Search movies");
+        listOfActions2.add("5) Search shows");
+        listOfActions2.add("6) Settings");
+        listOfActions2.add("7) exit");
 
         int action1 = 0;
         while (action1 != listOfActions2.size()) {
@@ -146,9 +147,10 @@ public class Menu {
                     System.out.println(media1);
                     break;
                 case 5:
+                case 6:
                     settings();
                     break;
-                case 6:
+                case 7:
                     exit();
                     break;
             }
