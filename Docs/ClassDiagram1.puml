@@ -1,7 +1,13 @@
 @startuml
+!pragma layout smetana
+
+class Main {
+    + main(args: String[]): void
+}
+
+
 
 class FileIO {
-    - headerWritten: boolean
     - mediaDataPath: String
     - path: String
     - ui: Util
@@ -67,7 +73,6 @@ class Shows {
     + toString(): String
 }
 enum Category {
-    UNDEFINED, TALK_SHOW, DOCUMENTARY, ANIMATION, ACTION, KIDS, CRIME, COMEDY, DRAMA, THRILLER, HORROR, ADVENTURE, ROMANCE, FAMILY, WAR, WESTERN, MUSICAL, BIOGRAPHY, SCI_FI, HISTORY, MUSIC, FILM_NOIR, MYSTERY, FANTASY, SPORT
 }
 class User {
     - fileIO: FileIO
@@ -102,4 +107,11 @@ Media <|-- Movies
 Media <|-- Shows
 Media <|-- SearchHandler
 Shows "1" *-- "1..*" Seasons
-SearchHandler "1" *-- "1..*" Media
+Main -- Menu
+Main -- FileIO
+Main -- Util
+Main -- User
+Main -- Streaming
+
+
+@enduml

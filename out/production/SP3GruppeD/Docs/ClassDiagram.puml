@@ -1,0 +1,111 @@
+@startuml
+!pragma layout smetana
+
+class User {
+    - username: String
+    - password: String
+    + login(username: String, password: String, path: String): boolean
+}
+
+class FileIO {
+    - mediaDataPath: String
+    + readFile(path: String): List
+    + saveMediaData(title: String, releaseYear: int, category: ArrayList<Category>, rating: double): void
+    + saveUserData(username: String, password: String, path: String): void
+    + getCategories(data: String): ArrayList<Category>
+}
+
+abstract class Media {
+    - releaseYear: int
+    - title: String
+    - categories: ArrayList<Category>
+    - rating: double
+    + watchLater(user: User): void
+    + removeFromWatchLater(user: User): void
+    + alreadyWatched(user: User): void
+    + watch(title: String): void
+    + loadMedia(pathToFile: String): List
+    + displayMedia(startIndex: int, count: int): void
+    + displayMediaList(mediaList: List, startIndex: int, count: int): void
+    + getReleaseYear(): int
+    + getTitle(): String
+    + getCategory(): ArrayList<Category>
+    + getRating(): double
+}
+
+class Movies {
+    + Movies(title: String, releaseYear: int, category: ArrayList<Category>, rating: double)
+    + toString(): String
+}
+
+class Shows {
+    - seasons: List
+    + addSeason(seasonNumber: int, episodeCount: int): void
+    + Shows(title: String, releaseYear: int, category: ArrayList<Category>, rating: double)
+    + toString(): String
+}
+
+class Category {
+
+    + findCategory(s: String): Category
+}
+
+class Util {
+    - scanner: Scanner
+    + displayList(list: ArrayList<String>, msg: String): void
+    + promptText(msg: String): String
+    + promptNumeric(msg: String): int
+    + displayMsg(msg: String): String
+    + promptChoice(optionslist: ArrayList<String>, msg: String): int
+}
+
+class SearchHandler {
+    - input: String
+    - media: Media
+    - menu: Menu
+    + searchInput(input: String): ArrayList
+    <Media>
+    + genreSearch(c: Category): ArrayList
+}
+
+class Streaming {
+    - listOfActions: ArrayList<String>
+    - io: FileIO
+    - util: Util
+    - menu: Menu
+    - username: String
+    - password: String
+    + createAccount(username: String, password: String, path: String): void
+}
+
+class Seasons {
+    - seasonNumber: int
+    - episodeCount: int
+    + Seasons(seasonNumber: int, episodeCount: int)
+    + getSeasonNumber(): int
+    + getEpisodeCount(): int
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+class Menu {
+    + startMenu(): void
+}
+
+Main *-- Streaming
+Streaming *-- User
+Streaming *-- FileIO
+Streaming *-- Menu
+Streaming *-- Media
+Media <|-- Movies
+Media <|-- Shows
+Media *-- Category
+Shows *-- Seasons
+Streaming *-- SearchHandler
+Streaming *-- Util
+
+
+
+@enduml
