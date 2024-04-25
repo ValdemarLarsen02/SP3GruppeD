@@ -8,7 +8,7 @@ public class Shows extends Media{
     private List<Seasons> seasons = new ArrayList<>();
 
 
-    public Shows(String title, int releaseYear, String category, double rating) {
+    public Shows(String title, int releaseYear, ArrayList<Category> category, double rating) {
         super(title, releaseYear, category, rating);  // Brug '0' som placeholder for rating, hvis nødvendigt
     }
 

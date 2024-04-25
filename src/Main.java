@@ -13,3 +13,5 @@ public class Main {
     }
 
 }
+
+// TODO login (saveuserdata), afspilning, savemediadata, watchlater, genre search.

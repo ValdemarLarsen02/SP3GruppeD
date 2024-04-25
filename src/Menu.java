@@ -1,19 +1,21 @@
 package src;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class Menu {
     private ArrayList<String> listOfActions;
     private ArrayList<String> listOfActions2;
     private ArrayList<String> optionslist;
     private Util util;
+    private User user;
     private Streaming streaming = new Streaming();
     private Media media;
     private SearchHandler sh;
-    private User user;
-    private FileIO io;
     private String username;
     private String password;
+    private Category category;
 
 
 
@@ -38,6 +40,7 @@ public class Menu {
                 case 1:
                     this.username = this.usernameInfoScreen("Please enter username!");
                     this.password = this.passwordInfoScreen("Please enter password!");
+                    mainMenu();
                     user.login(this.username, this.password);
                     break;
                 case 2:
@@ -86,10 +89,11 @@ public class Menu {
         }
     }
 
-    public String mainMenu() {
+    public ArrayList<Media> mainMenu() {
+        this.sh = new SearchHandler();
         // instantiering af film og serier
-        media = new Movies("Some title", 2000, "Some category", 5.0);
-        media = new Shows( "random", 0, "test", 5.0);
+       //media = new Movies("Some title", 2000, Category , 2.0);
+        //media = new Shows( "random", 0, Category , 5.0);
         util.displayMsg("Make a choice!");
         listOfActions2 = new ArrayList<>();
         listOfActions2.add("1) Movies");
@@ -107,7 +111,7 @@ public class Menu {
                 case 1:
                     String moviesPath = "data/film.txt"; // Erstat med den korrekte sti til dine filmdata
                     List<Media> movies = Media.loadMedia(moviesPath);
-                    media.displayMediaList(movies, 0, 30);
+                    media.displayMediaList(movies, 0, 20);
                     break;
                 case 2:
                     String seriePath = "data/serier.txt"; // Erstat med den korrekte sti til dine filmdata
@@ -115,10 +119,20 @@ public class Menu {
                     media.displayMediaList(shows, 0, 20);
                     break;
                 case 3:
-                    sh.genreSearch("");
-                    break;
+                    ArrayList<Category> allCategories = new ArrayList<>(Arrays.asList(Category.values()));
+                    String buffer = "";
+                    for(Category c : allCategories){
+                        buffer += c.toString()+", ";
+                    }
+                    util.displayMsg(buffer);
+                    String input = util.promptText("Pick a category.");
+                    Category searchCategory = Category.findCategory(input);
+                    return new SearchHandler().genreSearch(searchCategory);
+
                 case 4:
-                    sh.searchInput("");
+                    String input1 = util.promptText("Please make a search:");
+                    ArrayList<Media> media1 = sh.searchInput(input1);
+                    System.out.println(media1);
                     break;
                 case 5:
                     settings();

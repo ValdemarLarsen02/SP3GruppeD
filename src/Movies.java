@@ -1,11 +1,15 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movies extends Media{
 
-    public Movies(String title, int releaseYear, String category, double rating) {
-        super(title, releaseYear, category, rating);
+    public Movies(String title, int releaseYear, ArrayList<Category> category, double rating) {
+        super(title,
+                releaseYear,
+                category,
+                rating);
     }
 
     @Override

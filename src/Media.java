@@ -8,14 +8,14 @@ public abstract class Media {
     FileIO fileIO = new FileIO();
 
     private int releaseYear;
-    private String title;
-    private String category;
+    String title;
+    ArrayList<Category> categories;
     private double rating;
 
-    public Media(String title, int releaseYear, String category, double rating) {
+    public Media(String title, int releaseYear, ArrayList<Category> categories, double rating) {
         this.releaseYear = releaseYear;
         this.title = title;
-        this.category = category;
+        this.categories = categories;
         this.rating = rating;
     }
 
@@ -30,7 +30,7 @@ public abstract class Media {
     }
 
     void alreadyWatched(User user) {
-        fileIO.saveMediaData(this.title, this.releaseYear, this.category, this.rating);
+        fileIO.saveMediaData(this.title, this.releaseYear, this.categories, this.rating);
         util.displayMsg("You have already watched " + this.title);
     }
 
@@ -66,8 +66,8 @@ public abstract class Media {
         return title;
     }
 
-    public String getCategory() {
-        return category;
+    public ArrayList<Category> getCategory() {
+        return categories;
     }
 
     public double getRating() {
