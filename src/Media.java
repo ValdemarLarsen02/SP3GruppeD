@@ -20,17 +20,14 @@ public abstract class Media {
     }
 
     void watchLater(User user) {
-       // watchLaterList.add(user);
         util.displayMsg("You have added " + this.title + " to your watch list.");
     }
 
     void removeFromWatchLater(User user) {
-        //watchLaterList.remove(user);
         util.displayMsg("You have removed " + this.title + " from the watch list.");
     }
 
     void alreadyWatched(User user) {
-       // fileIO.saveMediaData(this.title, this.releaseYear, this.category, this.rating);
         util.displayMsg("You have already watched " + this.title);
     }
 
