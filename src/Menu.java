@@ -7,13 +7,15 @@ public class Menu {
     private ArrayList<String> listOfActions2;
     private ArrayList<String> optionslist;
     private Util util;
-    private Streaming stream;
+    private Streaming streaming = new Streaming();
     private Media media;
     private SearchHandler sh;
     private User user;
     private FileIO io;
     private String username;
     private String password;
+
+
 
     public void ShowMenu() {
 
@@ -41,7 +43,7 @@ public class Menu {
                 case 2:
                     this.username = this.usernameInfoScreen("Please enter username!");
                     this.password = this.passwordInfoScreen("Please enter password!");
-                    //stream.createAccount(this.username, this.password);
+                    streaming.createAccount(this.username, this.password, "data/Users.csv" );
                     mainMenu();
                     break;
                 case 3:
@@ -54,7 +56,7 @@ public class Menu {
 
 
     public void exit() {
-        io.saveMediaData("");
+        //io.saveMediaData("");
     }
 
     public String usernameInfoScreen(String msg) {
@@ -78,7 +80,7 @@ public class Menu {
         if (input == 1) {
             this.username = usernameInfoScreen("Please enter username!");
             this.password = passwordInfoScreen("Please enter password!");
-            io.saveUserData(username, password);
+           // io.registerUser(username, password);
         } else if(input == 2) {
             exit();
         }

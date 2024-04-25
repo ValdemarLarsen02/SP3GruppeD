@@ -2,11 +2,18 @@ package src;
 
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FileIO {
+    private String mediaDataPath = "data/MediaData.csv";
+    private String path;
+    Util ui = new Util();
+
+
 
     // Læser filen udfra given path og returner den data der er blevet hentet i en Arraylist.
     public List<Media> readFile(String path) {
@@ -92,11 +99,28 @@ public class FileIO {
 
 
 
-    void saveMediaData(String title){
-
+    void saveMediaData(String title, int releaseYear, String category, double rating) {
+        try {
+            FileWriter fw = new FileWriter(mediaDataPath, true);
+            fw.write("title, releaseYear, category, rating\n");
+            fw.write(title + "," + releaseYear + "," + category + "," + rating + "\n");
+            fw.close();
+        } catch (IOException e) {
+            ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
+        }
     }
 
-    void saveUserData(String username, String password){
+
+    void saveUserData(String username, String password, String path){
+        try {
+
+            FileWriter fw = new FileWriter(path, true);
+            fw.write("Username: " + "Password:");
+            fw.write(username + "," + password);
+            fw.flush();
+        } catch (IOException e) {
+            ui.displayMsg("Dataen blev ikke gemt " + e.getMessage());
+        }
 
     }
 

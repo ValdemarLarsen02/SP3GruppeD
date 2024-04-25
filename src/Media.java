@@ -11,8 +11,6 @@ public abstract class Media {
     private String title;
     private String category;
     private double rating;
-    private List<User> watchLaterList = new ArrayList<>();
-    private List<User> alreadyWatchedList = new ArrayList<>();
 
     public Media(String title, int releaseYear, String category, double rating) {
         this.releaseYear = releaseYear;
@@ -22,17 +20,17 @@ public abstract class Media {
     }
 
     void watchLater(User user) {
-        watchLaterList.add(user);
+       // watchLaterList.add(user);
         util.displayMsg("You have added " + this.title + " to your watch list.");
     }
 
     void removeFromWatchLater(User user) {
-        watchLaterList.remove(user);
+        //watchLaterList.remove(user);
         util.displayMsg("You have removed " + this.title + " from the watch list.");
     }
 
     void alreadyWatched(User user) {
-        alreadyWatchedList.add(user);
+        fileIO.saveMediaData(this.title, this.releaseYear, this.category, this.rating);
         util.displayMsg("You have already watched " + this.title);
     }
 
@@ -59,22 +57,6 @@ public abstract class Media {
             System.out.println((i + 1) + ". Title: " + media.getTitle() + ", Release Year: " + media.getReleaseYear() + ", Category: " + media.getCategory() + ", Rating: " + media.getRating());
         }
     }
-
-
-
-
-    /*int i = 0;
-    void turnPage() {
-
-        for (int j = i; j < i + 10 && j < .size(); j++) {
-            System.out.println((movie.get(j)));
-
-        }
-        i += 10;
-
-
-    }*/
-
 
     public int getReleaseYear() {
         return releaseYear;

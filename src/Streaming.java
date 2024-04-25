@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class Streaming {
     private ArrayList<String> listOfActions;
-    private FileIO io;
+    private FileIO io = new FileIO();
     private Util util;
     private Menu menu;
 
     String username;
     String password;
 
-    public Streaming() {
+    /*public Streaming() {
 
         this.io = new FileIO();
         this.util = new Util();
@@ -20,11 +20,12 @@ public class Streaming {
         menu.startMenu();
 
 
+    }*/
 
-    }
-    void createAccount(String username, String password) {
+
+    void createAccount(String username, String password, String path) {
         this.username = username;
         this.password = password;
-        io.saveUserData(username, password);
+        io.saveUserData(username, password, path);
     }
 }

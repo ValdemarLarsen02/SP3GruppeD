@@ -21,6 +21,7 @@ public class Movies extends Media{
     @Override
     void alreadyWatched(User user) {
         super.alreadyWatched(user);
+
     }
 
     @Override
